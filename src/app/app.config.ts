@@ -12,5 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideAnimationsAsync(),
   ],
 };
