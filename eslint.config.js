@@ -3,6 +3,8 @@ const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
 const ngrx = require("@ngrx/eslint-plugin/v9");
+const sheriff = require("@softarc/eslint-plugin-sheriff");
+const unusedImports = require("eslint-plugin-unused-imports");
 
 module.exports = tseslint.config(
   {
@@ -40,6 +42,30 @@ module.exports = tseslint.config(
       ...angular.configs.templateAccessibility,
     ],
     rules: {},
+  },
+  {
+    files: ["**/*.ts"],
+    extends: [...ngrx.configs.signals],
+  },
+  {
+    files: ["**/*.ts"],
+    extends: [sheriff.configs.all],
+  },
+  {
+    plugins: { "unused-imports": unusedImports },
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+        },
+      ],
+    },
   },
   {
     files: ["**/*.ts"],

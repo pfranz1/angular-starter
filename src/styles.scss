@@ -2,20 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+@font-face {
+  font-family: josefin-sans;
+  src: url("app/assets/fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 html,
 body {
   height: 100%;
+  background: rgb(17, 117, 139);
+  background: linear-gradient(
+    125deg,
+    rgba(17, 117, 139, 1) 6%,
+    rgba(17, 117, 139, 1) 23%,
+    rgba(7, 52, 62, 1) 68%
+  );
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: josefin-sans, "Helvetica Neue", sans-serif;
+  font-weight: 500;
 }
