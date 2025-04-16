@@ -8,15 +8,23 @@
     format("truetype");
 }
 
-html,
+html {
+  min-height: 100%;
+  position: relative;
+}
 body {
   height: 100%;
+  width: 100%;
+}
+
+html,
+body {
   background: rgb(17, 117, 139);
   background: linear-gradient(
-    125deg,
+    127deg,
     rgba(17, 117, 139, 1) 6%,
     rgba(17, 117, 139, 1) 23%,
-    rgba(7, 52, 62, 1) 68%
+    rgba(7, 52, 62, 1) 50%
   );
 }
 body {

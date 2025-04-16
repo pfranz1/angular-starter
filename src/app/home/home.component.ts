@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { PlantIframeComponent } from './plant-iframe.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [PlantIframeComponent],
   template: `
     <div
       class="p-6 pt-7 bg-slate-300 border-neutral-400 text-start text-2xl rounded-xl border-4"
@@ -69,6 +70,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
         </div>
       </button>
     </div>
+
+    <app-plant-iframe> </app-plant-iframe>
   `,
   styles: `
     h1 {
