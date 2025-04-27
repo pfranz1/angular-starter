@@ -5,73 +5,95 @@ import { PlantIframeComponent } from './plant-iframe.component';
   selector: 'app-home',
   imports: [PlantIframeComponent],
   template: `
-    <div
-      class="p-6 pt-7 bg-slate-300 border-neutral-400 text-start text-2xl rounded-xl border-4"
-    >
-      <p>Welcome to my website! What can I help you find?</p>
+    <div style="position:relative; bottom:275px;">
+      <app-plant-iframe> </app-plant-iframe>
+      <!-- <i
+        class="w-full mt-2 text-slate-400 text-center justify-center inline-flex"
+        >press g to pause</i
+      > -->
+      <div
+        class="p-6 pt-7 mt-1 bg-slate-300 border-neutral-400 text-start text-2xl rounded-xl border-4"
+      >
+        <p>Welcome to my website! What can I help you find?</p>
+      </div>
+
+      <div
+        class="grid sm:grid-cols-2 grid-rows-2 gap-4 mt-4 justify-items-center"
+      >
+        <button class="section-button">
+          <div class="h-24 flex flex-wrap justify-start items-center">
+            <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
+              <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
+                <img class="icon" alt="pages" src="assets/img/pages.svg" />
+              </div>
+            </div>
+
+            <div class="flex-grow">
+              <h1 class="text-center">Experience</h1>
+            </div>
+          </div>
+        </button>
+
+        <button class="section-button">
+          <div class="h-24 flex flex-wrap justify-start items-center">
+            <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
+              <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
+                <img
+                  class="icon"
+                  alt="computer"
+                  src="assets/img/computer.svg"
+                />
+              </div>
+            </div>
+
+            <div class="flex-grow">
+              <h1 class="text-center">Projects</h1>
+            </div>
+          </div>
+        </button>
+
+        <button class="section-button">
+          <div class="h-24 flex flex-wrap justify-start items-center">
+            <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
+              <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
+                <img
+                  class="icon"
+                  alt="person icon"
+                  src="assets/img/meeple.svg"
+                />
+              </div>
+            </div>
+
+            <div class="flex-grow max-sm:mt-1">
+              <h1 class="text-center">About</h1>
+            </div>
+          </div>
+        </button>
+
+        <button class="section-button">
+          <div class="h-24 flex flex-wrap justify-start items-center">
+            <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
+              <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
+                <img class="icon" alt="star" src="assets/img/star.svg" />
+              </div>
+            </div>
+
+            <div class="flex-grow max-sm:mt-1">
+              <h1 class="text-center">Skills</h1>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div>
+        <!-- <div class="inline-flex w-full justify-center">
+        <button class="mr-12 link-button bg-slate-500 text-slate-700 ">
+          Github
+        </button>
+        <button class="ml-12 link-button ">Linkedin</button>
+      </div> -->
+      </div>
     </div>
-
-    <div
-      class="grid sm:grid-cols-2 grid-rows-2 gap-4 mt-4 justify-items-center"
-    >
-      <button class="section-button">
-        <div class="h-24 flex flex-wrap justify-start items-center">
-          <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
-            <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
-              <img alt="pages" src="assets/img/pages.svg" />
-            </div>
-          </div>
-
-          <div class="flex-grow">
-            <h1 class="text-center">Experience</h1>
-          </div>
-        </div>
-      </button>
-
-      <button class="section-button">
-        <div class="h-24 flex flex-wrap justify-start items-center">
-          <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
-            <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
-              <img alt="computer" src="assets/img/computer.svg" />
-            </div>
-          </div>
-
-          <div class="flex-grow">
-            <h1 class="text-center">Projects</h1>
-          </div>
-        </div>
-      </button>
-
-      <button class="section-button">
-        <div class="h-24 flex flex-wrap justify-start items-center">
-          <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
-            <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
-              <img alt="person icon" src="assets/img/meeple.svg" />
-            </div>
-          </div>
-
-          <div class="flex-grow max-sm:mt-1">
-            <h1 class="text-center">About</h1>
-          </div>
-        </div>
-      </button>
-
-      <button class="section-button">
-        <div class="h-24 flex flex-wrap justify-start items-center">
-          <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
-            <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
-              <img alt="star" src="assets/img/star.svg" />
-            </div>
-          </div>
-
-          <div class="flex-grow max-sm:mt-1">
-            <h1 class="text-center">Skills</h1>
-          </div>
-        </div>
-      </button>
-    </div>
-
-    <app-plant-iframe> </app-plant-iframe>
   `,
   styles: `
     h1 {
@@ -79,7 +101,35 @@ import { PlantIframeComponent } from './plant-iframe.component';
     }
 
     .section-button {
-      @apply bg-slate-300 rounded-lg w-full text-start max-sm:pl-6 pl-12 p-4 pl-2 pt-5 text-lg;
+      @apply bg-slate-300 rounded-lg w-full text-start max-sm:pl-6 pl-12 p-4 pl-3 pt-5 text-lg;
+    }
+
+    .section-button {
+      // rgba(7, 52, 62, 1)
+      box-shadow: rgba(7, 52, 62, 0.5) 0 -25px 18px -14px inset;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      transition:
+        box-shadow 250ms,
+        transform 250ms;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .section-button:hover {
+      box-shadow: #94a3b8 0 -25px 18px -14px inset;
+      transform: scale(1.05);
+    }
+
+    .icon {
+      transition: all 250ms;
+    }
+
+    .section-button:hover .icon {
+      transform: rotate(3deg);
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
