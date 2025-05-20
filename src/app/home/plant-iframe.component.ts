@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -23,7 +24,7 @@ import { environment } from '../../environments/environment.development';
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlantIframeComponent {
+export class PlantIframeComponent implements AfterViewInit {
   @ViewChild('iframe', { static: false }) iframe!: ElementRef;
   iframeUrl = environment.pdmBaseUrl + '/digital-plant-embed/index.html'; // Path to your HTML file with WebGL
   safeIframeUrl: SafeResourceUrl;

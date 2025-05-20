@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -9,9 +9,13 @@ import { NgOptimizedImage } from '@angular/common';
     <div #centerContnet class="flex justify-center">
       <div #lConstrain class="ml-6 mr-6 md:ml-12 md:mr-12 max-w-5xl w-full">
         <div>
-          <div class="flex items-center p-5 pl-0 pr-0 ">
+          <div class="flex items-center pt-5 pl-0 pr-0 ">
             <div #nameContainer class="flex-auto">
-              <div>
+              <a
+                [tabindex]="this.router.url.toString() === '/' ? -1 : 0"
+                [href]="'.'"
+                style="display: block; width: min-content;  padding: 20px; padding-right:80px; padding-bottom: 5px;"
+              >
                 <h1
                   class="text-slate-300"
                   style="      
@@ -46,7 +50,7 @@ import { NgOptimizedImage } from '@angular/common';
                 >
                   Franz
                 </h1>
-              </div>
+              </a>
             </div>
             <div>
               <div
@@ -60,7 +64,14 @@ import { NgOptimizedImage } from '@angular/common';
                 class="circular-image-container max-sm-width-4"
               >
                 <img
-                  ngSrc="assets/img/headshot.jpg"
+                  (mouseenter)="onMouseEnter()"
+                  (mouseleave)="onMouseLeave()"
+                  [class]="this.headshotHovered ? 'rot-headshot' : ''"
+                  [ngSrc]="
+                    headshotHovered
+                      ? 'assets/img/headshot-funny.jpg'
+                      : 'assets/img/headshot.jpg'
+                  "
                   width="400"
                   height="533.328"
                   alt="headshot of me"
@@ -87,8 +98,15 @@ import { NgOptimizedImage } from '@angular/common';
     }
 
     .circular-image-container img {
+      z-index: 1;
       width: 100%; /* Ensure the image fills the container */
       height: auto; /* Maintain the image's aspect ratio */
+      transition: transform 250ms ease-in-out;
+      transform-origin: 50% 50%;
+    }
+
+    .rot-headshot {
+      transform: rotate(5deg);
     }
 
     .first-name {
@@ -119,4 +137,16 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class AppComponent {
   title = 'angular-starter';
+
+  headshotHovered = false;
+
+  onMouseEnter() {
+    this.headshotHovered = true;
+  }
+
+  onMouseLeave() {
+    this.headshotHovered = false;
+  }
+
+  constructor(public router: Router) {}
 }

@@ -20,7 +20,7 @@ import { PlantIframeComponent } from './plant-iframe.component';
       <div
         class="grid sm:grid-cols-2 grid-rows-2 gap-4 mt-4 justify-items-center"
       >
-        <button class="section-button">
+        <a class="section-button" [href]="'experience'">
           <div class="h-24 flex flex-wrap justify-start items-center">
             <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
               <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
@@ -32,9 +32,9 @@ import { PlantIframeComponent } from './plant-iframe.component';
               <h1 class="text-center">Experience</h1>
             </div>
           </div>
-        </button>
+        </a>
 
-        <button class="section-button">
+        <a class="section-button" [href]="'projects'">
           <div class="h-24 flex flex-wrap justify-start items-center">
             <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
               <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
@@ -50,9 +50,9 @@ import { PlantIframeComponent } from './plant-iframe.component';
               <h1 class="text-center">Projects</h1>
             </div>
           </div>
-        </button>
+        </a>
 
-        <button class="section-button">
+        <a class="section-button" [href]="'about'">
           <div class="h-24 flex flex-wrap justify-start items-center">
             <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
               <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
@@ -68,9 +68,9 @@ import { PlantIframeComponent } from './plant-iframe.component';
               <h1 class="text-center">About</h1>
             </div>
           </div>
-        </button>
+        </a>
 
-        <button class="section-button">
+        <a class="section-button" [href]="'skills'">
           <div class="h-24 flex flex-wrap justify-start items-center">
             <div class="max-sm:basis-full max-sm:flex max-sm:justify-center">
               <div class="max-sm:inline-block ml-1 h-16 w-16 sm:h-20 sm:w-20">
@@ -82,7 +82,7 @@ import { PlantIframeComponent } from './plant-iframe.component';
               <h1 class="text-center">Skills</h1>
             </div>
           </div>
-        </button>
+        </a>
       </div>
 
       <div>
