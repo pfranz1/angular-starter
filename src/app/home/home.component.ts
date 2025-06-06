@@ -42,7 +42,7 @@ import { NgOptimizedImage } from '@angular/common';
               width="48"
             />
           </a>
-          <button class="circle-button self-end opacity-85">
+          <a class="circle-button self-end opacity-85" href="achievements">
             <img
               class="place-self-center"
               ngSrc="assets/img/achivement.png"
@@ -50,7 +50,7 @@ import { NgOptimizedImage } from '@angular/common';
               height="64"
               width="64"
             />
-          </button>
+          </a>
         </div>
 
         <div

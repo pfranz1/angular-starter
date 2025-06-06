@@ -7,6 +7,11 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../environments/environment.development';
+import { AchivementService } from '../achievements/achivement.service';
+import {
+  AchievementName,
+  GardenerAchivementState,
+} from '../achievements/achievement';
 
 @Component({
   selector: 'app-plant-iframe',
@@ -26,10 +31,13 @@ import { environment } from '../../environments/environment.development';
 })
 export class PlantIframeComponent implements AfterViewInit {
   @ViewChild('iframe', { static: false }) iframe!: ElementRef;
-  iframeUrl = environment.pdmBaseUrl + '/digital-plant-embed/index.html'; // Path to your HTML file with WebGL
+  iframeUrl = environment.pdmBaseUrl + '/digital-plant-embed/index.html';
   safeIframeUrl: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private achivementService: AchivementService,
+  ) {
     this.safeIframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.iframeUrl,
     );
@@ -39,10 +47,20 @@ export class PlantIframeComponent implements AfterViewInit {
     iframeElement.onload = () => {
       const iframeWindow = iframeElement.contentWindow;
       if (iframeWindow) {
-        // You can now interact with the iframe's content, e.g., call functions
-        // defined within the iframe's JavaScript code.
-        // Example:
-        // iframeWindow.myWebGLFunction();
+        window.addEventListener('message', (event) => {
+          if (event.origin + '/' !== environment.pdmBaseUrl) {
+            return; // Ignore messages from other origins
+          }
+
+          const message = event.data;
+          if (message.type === 'snip') {
+            this.achivementService.updateState(
+              { leavesSnipped: 1 } as Partial<GardenerAchivementState>,
+              AchievementName.Gardener,
+              AchivementService.addMatching,
+            );
+          }
+        });
       }
     };
   }
