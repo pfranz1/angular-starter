@@ -2,7 +2,7 @@ export enum AchievementName {
   Test = 'Test Achievement',
   Starter = 'Hello, World',
   Travel = 'Digital Nomad',
-  Gardener = 'Snip Snip',
+  Gardener = 'Gardener',
 }
 
 export type AchievementType =

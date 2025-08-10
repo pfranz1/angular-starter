@@ -15,7 +15,7 @@ import { NgStyle } from '@angular/common';
     <div class="border-solid w-full text-center border-t-2 border-b-2">
       <h1
         [@myAnimation]
-        class="text-4xl mt-6 m-5 pt-1 text-slate-300 wave-text"
+        class=" mt-1 lg:mt-4 m-0 lg:m-4 pt-1 text-slate-300 wave-text"
       >
         @for (char of title().split(''); track char) {
           <span [ngStyle]="{ 'animation-delay': 0.5 + $index * 0.2 + 's' }">{{
@@ -27,8 +27,8 @@ import { NgStyle } from '@angular/common';
   `,
   styles: `
     .wave-text span {
+      @apply text-[3rem] lg:text-[4rem];
       display: inline-block;
-      font-size: 4rem;
       animation: wave 1.25s ease-in-out;
       animation-iteration-count: 2;
     }
@@ -39,7 +39,7 @@ import { NgStyle } from '@angular/common';
         transform: translateY(0);
       }
       50% {
-        transform: translateY(10px);
+        transform: translateY(-10px);
       }
     }
   `,

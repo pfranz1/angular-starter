@@ -6,15 +6,16 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'app-root',
   imports: [RouterOutlet, NgOptimizedImage],
   template: `
-    <div #centerContnet class="flex justify-center">
+    <div #centerContnet class=" flex justify-center">
       <div #lConstrain class="ml-6 mr-6 md:ml-12 md:mr-12 max-w-5xl w-full">
         <div>
           <div class="flex items-center pt-5 pl-0 pr-0 ">
-            <div #nameContainer class="flex-auto">
+            <div #nameContainer class="flex-auto flex sm:block justify-center">
               <a
                 [tabindex]="this.router.url.toString() === '/' ? -1 : 0"
+                class="md:p-5 pr-14"
                 [href]="'.'"
-                style="display: block; width: min-content;  padding: 20px; padding-right:80px; padding-bottom: 5px;"
+                style="display: block; width: min-content; padding-bottom: 5px;"
               >
                 <h1
                   class="text-slate-300"
@@ -52,7 +53,7 @@ import { NgOptimizedImage } from '@angular/common';
                 </h1>
               </a>
             </div>
-            <div>
+            <div class="hidden sm:block ">
               <div
                 style="      
         width: 8rem;
