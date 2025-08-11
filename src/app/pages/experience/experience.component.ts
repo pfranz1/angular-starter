@@ -16,38 +16,92 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
     <div class="flex flex-col gap-12 mt-8 pl-8 pr-8 mb-8">
       @for (exp of this.experiences; track exp.startDate) {
         <div
-          class=" shadow-lg rounded-[60px]"
+          class=" shadow-lg rounded-[30px]  md:rounded-[60px]"
           [ngClass]="
             $even
-              ? 'sm:rounded-l-[150px] exp-gradient-l'
-              : 'sm:rounded-r-[150px] exp-gradient-r'
+              ? 'md:rounded-l-[150px] exp-gradient-l'
+              : 'md:rounded-r-[150px] exp-gradient-r'
           "
         >
           <div class=" flex flex-col items-stretch overflow-hidden">
-            <div class="flex flex-row justify-center">
-              <h2
-                class="max-md:whitespace-break-spaces concave-h2 text-2xl md:text-4xl text-slate-300 bg-slate-800 width-full max-w-[20rem] sm:max-w-[30rem] lg:max-w-[40rem] p-8 text-center pt-10 pb-10"
+            <div class="flex justify-center">
+              <div
+                class="w-full flex flex-row justify-center concave-h2  text-center bg-slate-800 width-full max-w-[35rem] lg:max-w-[40rem] p-4 md:p-8 pt-5 md:pt-10 pb-6 d:pb-10"
               >
-                {{ exp.role }}
-                <br />
-                <span class="tracking-tighter text-xl font-light opacity-90">
-                  {{ exp.company }}
-                </span>
-              </h2>
+                <div
+                  class="flex flex-col w-1/3 justify-center md:hidden items-center"
+                >
+                  <div
+                    class="flex items-center justify-center w-[90px] h-[90px] overflow-hidden mb-2 m-5 rounded-full bg-white "
+                    [style]="'outline: 7px ' + exp.logoColor + ' double'"
+                  >
+                    <img
+                      [src]="exp.logo"
+                      [alt]="exp.company"
+                      class="object-contain w-full h-full m-2 "
+                      width="100"
+                      height="100"
+                    />
+                  </div>
+                  <div
+                    class="tracking-tighter text-xl font-semibold opacity-90 text-slate-300 mt-4"
+                  >
+                    {{ exp.company }}
+                  </div>
+                </div>
+                <div class="flex w-2/3 flex-col justify-between pl-2">
+                  <h2
+                    class="max-md:whitespace-break-spaces text-2xl md:text-4xl text-slate-300"
+                  >
+                    {{ exp.role }}
+                  </h2>
+                  <span
+                    class=" hidden md:block tracking-tighter text-xl font-light opacity-90 text-slate-300"
+                  >
+                    {{ exp.company }}
+                  </span>
+                  <div class="md:hidden ">
+                    <div class="text-lg text-slate-400 font-semibold mt-1">
+                      {{ exp.startDate | date: 'MMMM yyyy' }}
+                      -
+                      {{
+                        exp.endDate
+                          ? (exp.endDate | date: 'MMMM yyyy')
+                          : 'Present'
+                      }}
+                    </div>
+
+                    <div class="text-lg text-slate-500 font-semibold mt-1">
+                      {{ getDuration(exp.startDate, exp.endDate) }}
+                    </div>
+                    @if (exp.workType) {
+                      <div class="italic text-md text-slate-500">
+                        {{ exp.workType }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="flex flex-row items-strech overflow-hidden pt-2 pb-4">
               @if ($even) {
+                <div class="md:pr-4"></div>
+
                 <ng-container *ngTemplateOutlet="image"> </ng-container>
+                <div class="md:pr-4"></div>
                 <ng-container *ngTemplateOutlet="text"> </ng-container>
               } @else {
                 <ng-container *ngTemplateOutlet="text"> </ng-container>
+                <div class="md:pr-4"></div>
+
                 <ng-container *ngTemplateOutlet="image"> </ng-container>
+                <div class="md:pr-4"></div>
               }
             </div>
             <ng-template #image>
               <div
-                class="flex flex-col items-center justify-center w-1/3 p-6 pt-1 pl-10"
+                class="max-md:hidden flex flex-col items-center justify-center w-1/3 p-6 pt-1"
               >
                 <div
                   class="flex items-center justify-center w-[250px] h-[250px] overflow-hidden mb-2 m-5 rounded-full bg-white "
@@ -61,8 +115,11 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                     height="250"
                   />
                 </div>
-                <div class="text-lg text-slate-800 font-semibold mt-1">
-                  {{ exp.startDate | date: 'MMMM yyyy' }} -
+                <div
+                  class="text-lg text-slate-800 font-semibold mt-1 text-center"
+                >
+                  {{ exp.startDate | date: 'MMMM yyyy' }} –
+                  <br class="lg:hidden" />
                   {{
                     exp.endDate ? (exp.endDate | date: 'MMMM yyyy') : 'Present'
                   }}
@@ -81,13 +138,13 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 
             <ng-template #text>
               <div
-                class="flex flex-col justify-top w-2/3 p-8 pt-1 whitespace-break-spaces"
+                class="flex flex-col justify-top w-full md:w-2/3 p-8 pt-1 whitespace-break-spaces"
               >
                 <div class="h-full flex justify-around flex-col">
                   @for (a of exp.accomplishments; track a.desc) {
                     <div class="flex w-full items-center gap-4">
                       <div
-                        class="flex-shrink-0 w-1/7 flex justify-around flex-col text-center"
+                        class="flex-shrink-0 min-w-[85px] w-1/7 flex justify-around flex-col text-center items-center"
                       >
                         <div
                           class="pentagon-border-container drop-shadow-lg flex items-center justify-center w-[85px] h-[85px] relative"
