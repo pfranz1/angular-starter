@@ -26,13 +26,13 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
           <div class=" flex flex-col items-stretch overflow-hidden">
             <div class="flex justify-center">
               <div
-                class="w-full flex flex-row justify-center concave-h2  text-center bg-slate-800 width-full max-w-[35rem] lg:max-w-[40rem] p-4 md:p-8 pt-5 md:pt-10 pb-6 d:pb-10"
+                class="w-full flex flex-row justify-center concave-h2  text-center bg-slate-800 width-full max-w-[35rem] md:max-w-[30rem]  lg:max-w-[35rem] xl:max-w-[40rem] p-4 md:p-8 lg:p-4 pt-5 md:pt-10 pb-6 d:pb-10"
               >
                 <div
                   class="flex flex-col w-1/3 justify-center md:hidden items-center"
                 >
                   <div
-                    class="flex items-center justify-center w-[90px] h-[90px] overflow-hidden mb-2 m-5 rounded-full bg-white "
+                    class="flex items-center justify-center w-[90px] h-[90px] overflow-hidden mb-2 m-3 rounded-full bg-white "
                     [style]="'outline: 7px ' + exp.logoColor + ' double'"
                   >
                     <img
@@ -44,26 +44,33 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                     />
                   </div>
                   <div
-                    class="tracking-tighter text-xl font-semibold opacity-90 text-slate-300 mt-4"
+                    class="tracking-tighter text-xl font-normal text-slate-300 mt-2"
+                    [style]="'color:' + exp.logoColor"
                   >
                     {{ exp.company }}
                   </div>
                 </div>
-                <div class="flex w-2/3 flex-col justify-between pl-2">
+                <div class="flex w-2/3 flex-col justify-between max-md:pl-2">
                   <h2
-                    class="max-md:whitespace-break-spaces text-2xl md:text-4xl text-slate-300"
+                    class="max-md:whitespace-break-spaces text-3xl md:text-3xl lg:text-4xl text-slate-300"
                   >
                     {{ exp.role }}
                   </h2>
                   <span
                     class=" hidden md:block tracking-tighter text-xl font-light opacity-90 text-slate-300"
                   >
-                    {{ exp.company }}
+                    <span class="opacity-65">at</span> {{ exp.company }}
                   </span>
                   <div class="md:hidden ">
-                    <div class="text-lg text-slate-400 font-semibold mt-1">
-                      {{ exp.startDate | date: 'MMMM yyyy' }}
-                      -
+                    <div>
+                      <h3 class="text-2xl pt-2 font-bold text-slate-400">
+                        {{ exp.location }}
+                      </h3>
+                    </div>
+                    <div
+                      class="text-lg text-slate-400 font-semibold mt-3 mb-3 text-center max-md:leading-[0.25]"
+                    >
+                      {{ exp.startDate | date: 'MMMM yyyy' }} –
                       {{
                         exp.endDate
                           ? (exp.endDate | date: 'MMMM yyyy')
@@ -71,14 +78,20 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                       }}
                     </div>
 
-                    <div class="text-lg text-slate-500 font-semibold mt-1">
+                    <div
+                      class="text-md text-slate-300 font-semibold leading-none"
+                    >
                       {{ getDuration(exp.startDate, exp.endDate) }}
+
+                      @if (exp.workType) {
+                        |
+                        <span
+                          class=" font-normal text-slate-400 opacity-95 overflow-hidden"
+                        >
+                          {{ exp.workType }}
+                        </span>
+                      }
                     </div>
-                    @if (exp.workType) {
-                      <div class="italic text-md text-slate-500">
-                        {{ exp.workType }}
-                      </div>
-                    }
                   </div>
                 </div>
               </div>
@@ -88,14 +101,16 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
               @if ($even) {
                 <div class="md:pr-4"></div>
 
-                <ng-container *ngTemplateOutlet="image"> </ng-container>
+                <ng-container *ngTemplateOutlet="image"></ng-container>
                 <div class="md:pr-4"></div>
-                <ng-container *ngTemplateOutlet="text"> </ng-container>
+                <ng-container *ngTemplateOutlet="text"></ng-container>
+                <div class="md:pr-12"></div>
               } @else {
-                <ng-container *ngTemplateOutlet="text"> </ng-container>
+                <div class="md:pr-12"></div>
+                <ng-container *ngTemplateOutlet="text"></ng-container>
                 <div class="md:pr-4"></div>
 
-                <ng-container *ngTemplateOutlet="image"> </ng-container>
+                <ng-container *ngTemplateOutlet="image"></ng-container>
                 <div class="md:pr-4"></div>
               }
             </div>
@@ -115,8 +130,17 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                     height="250"
                   />
                 </div>
+                <div>
+                  <h3
+                    [style]="'color:' + exp.logoColor"
+                    class="text-2xl pt-2 font-bold"
+                  >
+                    {{ exp.location }}
+                  </h3>
+                </div>
+
                 <div
-                  class="text-lg text-slate-800 font-semibold mt-1 text-center"
+                  class="text-lg text-slate-800 font-semibold mt-2 text-center max-md:leading-[0.25]"
                 >
                   {{ exp.startDate | date: 'MMMM yyyy' }} –
                   <br class="lg:hidden" />
@@ -125,29 +149,47 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                   }}
                 </div>
 
-                <div class="text-lg text-slate-500 font-semibold mt-1">
+                <div class="text-md text-slate-700 font-semibold leading-none">
                   {{ getDuration(exp.startDate, exp.endDate) }}
+
+                  @if (exp.workType) {
+                    |
+                    <span class=" font-normal text-slate-700 opacity-95">
+                      {{ exp.workType }}
+                    </span>
+                  }
                 </div>
-                @if (exp.workType) {
-                  <div class="italic text-md text-slate-500">
-                    {{ exp.workType }}
-                  </div>
-                }
               </div>
             </ng-template>
 
             <ng-template #text>
               <div
-                class="flex flex-col justify-top w-full md:w-2/3 p-8 pt-1 whitespace-break-spaces"
+                class="flex flex-col justify-top w-full md:w-2/3 pt-1 whitespace-break-spaces"
               >
                 <div class="h-full flex justify-around flex-col">
                   @for (a of exp.accomplishments; track a.desc) {
-                    <div class="flex w-full items-center gap-4">
+                    @if (!$first && $count > 2) {
+                      <div
+                        class="w-full h-0 mt-1 mb-1"
+                        [ngClass]="'border-t-2'"
+                        style="border-color: rgba(50,65,84,0.15)"
+                      ></div>
+                    } @else if (!$first) {
+                      <div
+                        class="w-full h-0 mt-1 mb-1 md:hidden"
+                        [ngClass]="'border-t-2'"
+                        style="border-color: rgba(50,65,84,0.15)"
+                      ></div>
+                    }
+
+                    <div
+                      class="flex w-full items-center gap-4 pl-8 pr-8 md:pr-0 md:pl-0"
+                    >
                       <div
                         class="flex-shrink-0 min-w-[85px] w-1/7 flex justify-around flex-col text-center items-center"
                       >
                         <div
-                          class="pentagon-border-container drop-shadow-lg flex items-center justify-center w-[85px] h-[85px] relative"
+                          class="pentagon-border-container drop-shadow-xl flex items-center justify-center w-[85px] h-[85px] relative"
                         >
                           <div
                             class="pentagon-border absolute top-0 left-auto right-auto w-[85px] h-[85px]"
@@ -165,15 +207,15 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                           </div>
                         </div>
                         <div>
-                          <h3
-                            class="pt-1 font-semibold text-slate-600 font-bold"
-                          >
+                          <h3 class="pt-1 font-semibold text-slate-800">
                             {{ a.skill.name }}
                           </h3>
                         </div>
                       </div>
                       <div class="w-6/7">
-                        <p class="indent-5 mt-3 text-lg text-left ">
+                        <p
+                          class="indent-5 mt-3 text-lg text-center sm:text-left text-slate-800 font-[350]"
+                        >
                           {{ a.desc }}
                         </p>
                       </div>
@@ -213,15 +255,18 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
       /* Concave effect using clip-path */
       clip-path: path('M0,0 H100% V100 Q50%,80 100%,100 V0 Z');
     }
+
     @supports (clip-path: path('')) {
       .concave-h2 {
         clip-path: path('M0,0 H100% V100 Q90,0 0,100 V0 Z');
       }
     }
+
     /* Custom width utilities for 1/7 and 6/7 */
     .w-1\\/7 {
       width: 14.2857143%;
     }
+
     .w-6\\/7 {
       width: 85.7142857%;
     }
@@ -233,7 +278,7 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
     }
 
     .pentagon-border {
-      background: oklch(70.4% 0.04 256.788);
+      background: oklch(0.635 0.036 256.799);
       clip-path: polygon(50% 0%, 0% 38%, 19% 100%, 81% 100%, 100% 38%);
       width: 85px;
       height: 85px;
@@ -268,7 +313,7 @@ export class ExperienceComponent implements OnInit {
     const endDate = end ? new Date(end) : new Date();
     const startDate = new Date(start);
     let years = endDate.getFullYear() - startDate.getFullYear();
-    let months = endDate.getMonth() - startDate.getMonth();
+    let months = endDate.getMonth() - startDate.getMonth() + 1;
 
     if (months < 0) {
       years--;
