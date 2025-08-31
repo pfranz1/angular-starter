@@ -3,13 +3,18 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
+    "start-local": "node index.js true",
+    "start": "node index.js",
     "build": "ng build",
+    "build-local-and-serve": "ng build --configuration local-deploy && npm run start &",
+    "build-gcloud-and-deploy": "ng build --configuration production && gcloud run deploy --source . my-website",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "prepare": "husky"
+    "prepare": "is-ci || husky"
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular-architects/ngrx-toolkit": "^19.1.0",
@@ -24,6 +29,8 @@
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
     "@ngrx/signals": "^19.0.1",
+    "express": "^5.1.0",
+    "is-ci": "^4.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -40,7 +47,9 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/user-event": "^14.5.2",
+    "@types/express": "^5.0.3",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.2.1",
     "angular-eslint": "19.0.2",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.16.0",

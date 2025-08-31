@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { AchivementService } from '../achievements/achivement.service';
 import {
   AchievementName,
@@ -17,13 +17,8 @@ import {
   selector: 'app-plant-iframe',
   imports: [],
   template: `
-    <div style="height: 600px;">
-      <iframe
-        #iframe
-        [src]="safeIframeUrl"
-        width="100%"
-        height="600px"
-      ></iframe>
+    <div class="h-[600px]">
+      <iframe #iframe [src]="safeIframeUrl" width="100%" height="100%"></iframe>
     </div>
   `,
   styles: ``,
@@ -31,12 +26,12 @@ import {
 })
 export class PlantIframeComponent implements AfterViewInit {
   @ViewChild('iframe', { static: false }) iframe!: ElementRef;
-  iframeUrl = environment.pdmBaseUrl + '/digital-plant-embed/index.html';
+  iframeUrl = (environment.plantHost ?? window.origin) + environment.plantPath;
   safeIframeUrl: SafeResourceUrl;
 
   constructor(
     private sanitizer: DomSanitizer,
-    private achivementService: AchivementService,
+    private achievementService: AchivementService,
   ) {
     this.safeIframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       this.iframeUrl,
@@ -48,13 +43,13 @@ export class PlantIframeComponent implements AfterViewInit {
       const iframeWindow = iframeElement.contentWindow;
       if (iframeWindow) {
         window.addEventListener('message', (event) => {
-          if (event.origin + '/' !== environment.pdmBaseUrl) {
+          if (event.origin !== window.origin) {
             return; // Ignore messages from other origins
           }
 
           const message = event.data;
           if (message.type === 'snip') {
-            this.achivementService.updateState(
+            this.achievementService.updateState(
               { leavesSnipped: 1 } as Partial<GardenerAchivementState>,
               AchievementName.Gardener,
               AchivementService.addMatching,
@@ -64,4 +59,6 @@ export class PlantIframeComponent implements AfterViewInit {
       }
     };
   }
+
+  protected readonly environment = environment;
 }

@@ -6,14 +6,16 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'app-home',
   imports: [PlantIframeComponent, NgOptimizedImage],
   template: `
-    <div style="transform: translate(0px,-275px);">
+    <div class="translate-y-[-340px] sm:translate-y-[-275px]">
       <app-plant-iframe class="z-10"> </app-plant-iframe>
 
       <!-- <i
         class="w-full mt-2 text-slate-400 text-center justify-center inline-flex"
         >press g to pause</i
       > -->
-      <div class="translate-y-[-220px] lg:translate-y-[-80px]">
+      <div
+        class="translate-y-[-220px] sm:translate-y-[-220px] lg:translate-y-[-80px]"
+      >
         <div class="flex flex-col w-full lg:flex-row justify-end ">
           <a
             class="circle-button self-end flex align-center justify-center"

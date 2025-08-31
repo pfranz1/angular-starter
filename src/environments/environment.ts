@@ -1,3 +1,4 @@
 export const environment = {
-  pdmBaseUrl: 'https://pfranz1.github.io/pdm-2023/',
+  plantPath: '/plant',
+  plantHost: null, //null means, "same host"
 };

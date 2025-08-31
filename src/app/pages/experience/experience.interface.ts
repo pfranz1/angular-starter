@@ -28,7 +28,7 @@ export const Experiences: Experience[] = [
     company: 'CGI Federal',
     location: 'Lafayette, LA',
     startDate: new Date('2024-06-01'),
-    endDate: new Date('2025-08-8'),
+    endDate: new Date('2025-08-08'),
     workType: 'Full-time',
     accomplishments: [
       {

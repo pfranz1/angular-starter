@@ -83,7 +83,7 @@ export class TravelAchivement extends Achievement<TravelAchivementState> {
   constructor(state: TravelAchivementState) {
     super(
       AchievementName.Travel,
-      'Visit each page of the site at least once.',
+      'Visit each page of the site.',
       'assets/img/compass.webp',
       state,
     );

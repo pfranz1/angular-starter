@@ -63,7 +63,7 @@ pnpm ng add @angular-eslint/schematics
 pnpm i -D eslint-plugin-unused-imports husky prettier lint-staged @softarc/{sheriff-core,eslint-plugin-sheriff}
 ```
 
-To integrate `eslint-plugin-unused-imports` and sheriff into ESLint, add the following to `eslint.config.js`:
+To integrate `eslint-plugin-unused-imports` and sheriff into ESLint, add the following to `eslint.config.cjs`:
 
 ```javascript
 // exsting imports...
@@ -141,7 +141,7 @@ It is also important to use the official ESLint rules for NgRx:
 pnpm i -D @ngrx/eslint-plugin-ngrx
 ```
 
-Add the following to the ESLint configuration `eslint.config.js`:
+Add the following to the ESLint configuration `eslint.config.cjs`:
 
 ```javascript
 // existing imports...

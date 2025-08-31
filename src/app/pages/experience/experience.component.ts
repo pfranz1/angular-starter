@@ -26,7 +26,7 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
           <div class=" flex flex-col items-stretch overflow-hidden">
             <div class="flex justify-center">
               <div
-                class="w-full flex flex-row justify-center concave-h2  text-center bg-slate-800 width-full max-w-[35rem] md:max-w-[30rem]  lg:max-w-[35rem] xl:max-w-[40rem] p-4 md:p-8 lg:p-4 pt-5 md:pt-10 pb-6 d:pb-10"
+                class="w-full flex flex-row justify-center bookmark-rounding  text-center bg-slate-800 width-full max-w-[35rem] md:max-w-[30rem]  lg:max-w-[35rem] xl:max-w-[40rem] p-4 md:p-8 lg:p-4 pt-5 md:pt-10 pb-6 d:pb-10"
               >
                 <div
                   class="flex flex-col w-1/3 justify-center md:hidden items-center"
@@ -68,7 +68,7 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                       </h3>
                     </div>
                     <div
-                      class="text-lg text-slate-400 font-semibold mt-3 mb-3 text-center max-md:leading-[0.25]"
+                      class="text-lg text-slate-400 font-semibold mt-3 mb-3 text-center "
                     >
                       {{ exp.startDate | date: 'MMMM yyyy' }} –
                       {{
@@ -186,7 +186,7 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                       class="flex w-full items-center gap-4 pl-8 pr-8 md:pr-0 md:pl-0"
                     >
                       <div
-                        class="flex-shrink-0 min-w-[85px] w-1/7 flex justify-around flex-col text-center items-center"
+                        class="flex-shrink-0 min-w-[85px] w-1/7 flex justify-around flex-col text-center items-center "
                       >
                         <div
                           class="pentagon-border-container drop-shadow-xl flex items-center justify-center w-[85px] h-[85px] relative"
@@ -246,20 +246,12 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
       );
     }
 
-    .concave-h2 {
+    .bookmark-rounding {
       position: relative;
       overflow: hidden;
       border-radius: 0 0 60px 60px / 0 0 40px 40px;
       /* fallback for browsers without clip-path support */
       z-index: 1;
-      /* Concave effect using clip-path */
-      clip-path: path('M0,0 H100% V100 Q50%,80 100%,100 V0 Z');
-    }
-
-    @supports (clip-path: path('')) {
-      .concave-h2 {
-        clip-path: path('M0,0 H100% V100 Q90,0 0,100 V0 Z');
-      }
     }
 
     /* Custom width utilities for 1/7 and 6/7 */
