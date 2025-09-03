@@ -13,16 +13,16 @@ import { NgStyle } from '@angular/common';
   imports: [NgStyle],
   template: `
     <div class="border-solid w-full text-center border-t-2 border-b-2">
-      <h1
+      <h2
         [@myAnimation]
-        class=" mt-1 lg:mt-4 m-0 lg:m-4 pt-1 text-slate-300 wave-text"
+        class=" mt-1 lg:mt-4 m-0 lg:m-4 pt-1 text-slate-200 wave-text font-bold whitespace-nowrap"
       >
         @for (char of title().split(''); track char) {
           <span [ngStyle]="{ 'animation-delay': 0.5 + $index * 0.2 + 's' }">{{
             char
           }}</span>
         }
-      </h1>
+      </h2>
     </div>
   `,
   styles: `

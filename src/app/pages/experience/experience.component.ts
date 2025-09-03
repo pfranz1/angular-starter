@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SectionHeaderComponent } from '../../shared/section-header.component';
 import { Experiences, Experience } from './experience.interface';
 import { AchivementService } from '../../achievements/achivement.service';
 import {
@@ -10,9 +9,8 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-experience',
-  imports: [SectionHeaderComponent, DatePipe, NgTemplateOutlet, NgClass],
+  imports: [DatePipe, NgTemplateOutlet, NgClass],
   template: `
-    <app-section-header title="Experience" />
     <div class="flex flex-col gap-12 mt-8 pl-8 pr-8 mb-8">
       @for (exp of this.experiences; track exp.startDate) {
         <div

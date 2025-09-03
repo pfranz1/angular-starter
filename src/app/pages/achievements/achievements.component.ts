@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SectionHeaderComponent } from '../../shared/section-header.component';
 import { AchivementService } from '../../achievements/achivement.service';
 import {
   AchievementName,
@@ -10,10 +9,8 @@ import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-achievements',
 
-  imports: [SectionHeaderComponent],
+  imports: [],
   template: `
-    <app-section-header title="Achievements" />
-
     <div class="flex flex-wrap gap-8 justify-center items-center w-full mt-8">
       @for (
         achievement of this.achievementService.getAchievements();
