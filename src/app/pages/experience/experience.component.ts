@@ -5,13 +5,20 @@ import {
   AchievementName,
   TravelAchivementState,
 } from '../../achievements/achievement';
-import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
+import {
+  DatePipe,
+  NgClass,
+  NgOptimizedImage,
+  NgTemplateOutlet,
+} from '@angular/common';
 
 @Component({
   selector: 'app-experience',
-  imports: [DatePipe, NgTemplateOutlet, NgClass],
+  imports: [DatePipe, NgTemplateOutlet, NgClass, NgOptimizedImage],
   template: `
-    <div class="flex flex-col gap-12 mt-8 pl-8 pr-8 mb-8">
+    <div
+      class="flex flex-col gap-12 md:mt-8 mt-4 md:pl-8 md:pr-8 sm:pl-4 pl-1 pr-1 sm:pr-4 mb-8"
+    >
       @for (exp of this.experiences; track exp.startDate) {
         <div
           class=" shadow-lg rounded-[30px]  md:rounded-[60px]"
@@ -24,72 +31,105 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
           <div class=" flex flex-col items-stretch overflow-hidden">
             <div class="flex justify-center">
               <div
-                class="w-full flex flex-row justify-center bookmark-rounding  text-center bg-slate-800 width-full max-w-[35rem] md:max-w-[30rem]  lg:max-w-[35rem] xl:max-w-[40rem] p-4 md:p-8 lg:p-4 pt-5 md:pt-10 pb-6 d:pb-10"
+                class="w-full  bookmark-rounding bg-slate-800 text-center max-w-[35rem] md:max-w-[30rem]  lg:max-w-[35rem] xl:max-w-[40rem] p-4 md:p-8 pt-5 md:pt-10 pb-6 d:pb-10"
               >
+                <div class=" w-full justify-center pb-1 hidden md:flex">
+                  <h2
+                    class=" text-3xl md:text-3xl lg:text-4xl text-slate-300 text-center width-full  md:max-w-full  md:pl-0 md:pr-0 text-balance leading-none h-min"
+                  >
+                    {{ exp.role }}
+                  </h2>
+                </div>
+
                 <div
-                  class="flex flex-col w-1/3 justify-center md:hidden items-center"
+                  class="grid grid-rows-[auto,1fr,1fr] grid-cols-[1fr,1fr] grid-flow-col content-center items-center md:hidden h-min w-full"
                 >
+                  <!--                  image-->
                   <div
-                    class="flex items-center justify-center w-[90px] h-[90px] overflow-hidden mb-2 m-3 rounded-full bg-white "
+                    class="flex items-center justify-center w-[100px] h-[100px] max-h-[100px] min-w-[100px] overflow-hidden mb-2 m-3 rounded-full bg-white place-self-center"
                     [style]="'outline: 7px ' + exp.logoColor + ' double'"
                   >
                     <img
-                      [src]="exp.logo"
+                      [ngSrc]="exp.logo"
                       [alt]="exp.company"
                       class="object-contain w-full h-full m-2 "
                       width="100"
                       height="100"
                     />
                   </div>
-                  <div
-                    class="tracking-tighter text-xl font-normal text-slate-300 mt-2"
-                    [style]="'color:' + exp.logoColor"
-                  >
-                    {{ exp.company }}
+                  <!--                  Company-->
+                  <div class="pt-2">
+                    <p
+                      class="tracking-tighter text-2xl font-normal text-slate-300 text-balance"
+                      [style]="'color:' + exp.logoColor"
+                    >
+                      {{ exp.company }}
+                    </p>
                   </div>
-                </div>
-                <div class="flex w-2/3 flex-col justify-between max-md:pl-2">
+                  <!--                  Location-->
+                  <div class="text-xl font-normal text-slate-300 ">
+                    <p class="text-slate-300">
+                      {{ exp.location }}
+                    </p>
+                  </div>
+                  <!--                  role-->
                   <h2
-                    class="max-md:whitespace-break-spaces text-3xl md:text-3xl lg:text-4xl text-slate-300"
+                    class=" text-3xl md:text-3xl lg:text-4xl text-slate-300 text-center md:text-center width-full  md:max-w-full  md:pl-0 md:pr-0 text-pretty leading-none h-min"
                   >
                     {{ exp.role }}
                   </h2>
-                  <span
-                    class=" hidden md:block tracking-tighter text-xl font-light opacity-90 text-slate-300"
+                  <!--                  Duration-->
+                  <div
+                    class="flex w-full text-lg text-slate-400 font-semibold "
                   >
-                    <span class="opacity-65">at</span> {{ exp.company }}
-                  </span>
-                  <div class="md:hidden ">
-                    <div>
-                      <h3 class="text-2xl pt-2 font-bold text-slate-400">
-                        {{ exp.location }}
-                      </h3>
+                    <div class="w-2/5 text-center">
+                      <p class="leading-none">
+                        {{ exp.startDate | date: 'MMMM' }}<br />{{
+                          exp.startDate | date: 'yyyy'
+                        }}
+                      </p>
+                      <p></p>
                     </div>
                     <div
-                      class="text-lg text-slate-400 font-semibold mt-3 mb-3 text-center "
+                      class="flex w-1/5 items-center justify-center text-center"
                     >
-                      {{ exp.startDate | date: 'MMMM yyyy' }} –
-                      {{
-                        exp.endDate
-                          ? (exp.endDate | date: 'MMMM yyyy')
-                          : 'Present'
-                      }}
+                      <p>—</p>
                     </div>
-
-                    <div
-                      class="text-md text-slate-300 font-semibold leading-none"
-                    >
-                      {{ getDuration(exp.startDate, exp.endDate) }}
-
-                      @if (exp.workType) {
-                        |
-                        <span
-                          class=" font-normal text-slate-400 opacity-95 overflow-hidden"
-                        >
-                          {{ exp.workType }}
-                        </span>
+                    <div class="w-2/5 text-center">
+                      @if (exp.endDate) {
+                        <p class="leading-none">
+                          {{ exp.endDate | date: 'MMMM' }}<br />{{
+                            exp.endDate | date: 'yyyy'
+                          }}
+                        </p>
+                      } @else {
+                        <p>Present</p>
                       }
                     </div>
+                  </div>
+                  <div
+                    class="text-md text-slate-300 font-semibold leading-none "
+                  >
+                    {{ getDuration(exp.startDate, exp.endDate) }}
+
+                    @if (exp.workType) {
+                      |
+                      <span
+                        class=" font-normal text-slate-400 opacity-95 overflow-hidden"
+                      >
+                        {{ exp.workType }}
+                      </span>
+                    }
+                  </div>
+                </div>
+
+                <div class="flex flex-row justify-center width-full">
+                  <div class="flex w-1/3 flex-col justify-between max-md:pl-2">
+                    <span
+                      class=" hidden md:block tracking-tighter text-xl font-light opacity-90 text-slate-300"
+                    >
+                      <span class="opacity-65">in </span> {{ exp.location }}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -131,9 +171,9 @@ import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
                 <div>
                   <h3
                     [style]="'color:' + exp.logoColor"
-                    class="text-2xl pt-2 font-bold"
+                    class="text-2xl pt-2 font-bold leading-none text-center"
                   >
-                    {{ exp.location }}
+                    {{ exp.company }}
                   </h3>
                 </div>
 
