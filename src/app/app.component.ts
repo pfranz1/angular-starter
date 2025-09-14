@@ -105,7 +105,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
               </div>
               @if (!isSmall()) {
                 <div
-                  class="inline-flex w-1/2 sm:w-2/5 justify-end sm:justify-start"
+                  class="inline-flex w-1/2 sm:w-2/5 justify-end sm:justify-center"
                 >
                   <app-section-header [title]="pageTitle() ?? ''">
                   </app-section-header>

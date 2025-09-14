@@ -2,7 +2,7 @@ import { getSkill, Skill, SkillName } from '../skills/skills.interface';
 
 export interface Accomplishment {
   desc: string;
-  skill: Skill<SkillName>;
+  skill: Skill;
 }
 
 export interface Experience {

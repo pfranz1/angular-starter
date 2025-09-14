@@ -40,7 +40,7 @@ import { OnInit } from '@angular/core';
                 [classList]="
                   achievement.isAchieved()
                     ? 'text-slate-900 '
-                    : 'text-sltae-300'
+                    : 'text-slate-300'
                 "
               >
                 {{
