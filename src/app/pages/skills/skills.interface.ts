@@ -14,7 +14,6 @@ export enum SkillName {
   Flutter = 'Flutter',
   Firebase = 'Firebase',
   VSCode = 'VSCode',
-  Unknown = 'Unknown',
   UX = 'UI / UX',
   FullStack = 'Full Stack',
   Writing = 'Writing',
@@ -28,6 +27,15 @@ export enum SkillName {
   Leadership = 'Leadership',
   Hardwork = 'Elbow Grease',
   Programming = 'Programming',
+}
+
+export enum SkillCategory {
+  programmingLanguages = 'Programming Languages',
+  frameworksAndLibraries = 'Frameworks & Libraries',
+  toolsAndTechnologies = 'Tools & Technologies',
+  foundational = 'Foundational Knowledge',
+  softSkills = 'Soft Skills',
+  hobbiesAndInterests = 'Hobbies & Interests',
 }
 
 import { Pipe, PipeTransform } from '@angular/core';
@@ -110,6 +118,7 @@ export interface Skill {
   icon: string;
   name: SkillName;
   level: SkillLevel;
+  category: SkillCategory;
 }
 
 export function getSkill(name: SkillName) {
@@ -120,174 +129,196 @@ const python: Skill = {
   icon: 'assets/img/skills/python.png',
   name: SkillName.Python,
   level: SkillLevel.two,
+  category: SkillCategory.programmingLanguages,
 };
 
 const angular: Skill = {
   icon: 'assets/img/skills/angular.jpg',
   name: SkillName.Angular,
   level: SkillLevel.four,
+  category: SkillCategory.frameworksAndLibraries,
 };
 
 const linux: Skill = {
   icon: 'assets/img/skills/linux.png',
   name: SkillName.Linux,
-  level: SkillLevel.three,
+  level: SkillLevel.two,
+  category: SkillCategory.foundational,
 };
 
 const java: Skill = {
   icon: 'assets/img/skills/java.png',
   name: SkillName.Java,
   level: SkillLevel.three,
+  category: SkillCategory.programmingLanguages,
 };
 
 const react: Skill = {
   icon: 'assets/img/skills/react.png',
   name: SkillName.React,
   level: SkillLevel.two,
+  category: SkillCategory.frameworksAndLibraries,
 };
 
 const docker: Skill = {
   icon: 'assets/img/skills/docker.png',
   name: SkillName.Docker,
   level: SkillLevel.two,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const javascript: Skill = {
   icon: 'assets/img/skills/js.png',
   name: SkillName.JavaScript,
   level: SkillLevel.three,
+  category: SkillCategory.programmingLanguages,
 };
 
 const cypress: Skill = {
   icon: 'assets/img/skills/cypress.jpg',
   name: SkillName.Cypress,
   level: SkillLevel.two,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const git: Skill = {
   icon: 'assets/img/skills/git.png',
   name: SkillName.Git,
   level: SkillLevel.three,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const c_cpp: Skill = {
   icon: 'assets/img/skills/c_cpp.png',
   name: SkillName.C_CPP,
   level: SkillLevel.two,
+  category: SkillCategory.programmingLanguages,
 };
 
 const spring_jpa: Skill = {
   icon: 'assets/img/skills/spring_jpa.png',
   name: SkillName.Spring_JPA,
   level: SkillLevel.two,
+  category: SkillCategory.frameworksAndLibraries,
 };
 
 const figma: Skill = {
   icon: 'assets/img/skills/figma.webp',
   name: SkillName.Figma,
   level: SkillLevel.three,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const flutter: Skill = {
   icon: 'assets/img/skills/flutter.png',
   name: SkillName.Flutter,
   level: SkillLevel.three,
+  category: SkillCategory.frameworksAndLibraries,
 };
 
 const firebase: Skill = {
   icon: 'assets/img/skills/firebase.png',
   name: SkillName.Firebase,
   level: SkillLevel.two,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const vscode: Skill = {
   icon: 'assets/img/skills/vscode.png',
   name: SkillName.VSCode,
   level: SkillLevel.three,
-};
-
-const unknown: Skill = {
-  icon: 'assets/img/skills/unknown.webp',
-  name: SkillName.Unknown,
-  level: SkillLevel.one,
+  category: SkillCategory.toolsAndTechnologies,
 };
 
 const ux: Skill = {
   icon: 'assets/img/skills/ux.png',
   name: SkillName.UX,
   level: SkillLevel.three,
+  category: SkillCategory.foundational,
 };
 
 const fullstack: Skill = {
   icon: 'assets/img/skills/fullstack.png',
   name: SkillName.FullStack,
   level: SkillLevel.three,
+  category: SkillCategory.foundational,
 };
 
 const writing: Skill = {
   icon: 'assets/img/skills/writing.webp',
   name: SkillName.Writing,
   level: SkillLevel.four,
+  category: SkillCategory.softSkills,
 };
 
 const presenting: Skill = {
   icon: 'assets/img/skills/presenting.png',
   name: SkillName.Presenting,
   level: SkillLevel.three,
+  category: SkillCategory.softSkills,
 };
 
 const programming: Skill = {
   icon: 'assets/img/skills/hardwork.png',
   name: SkillName.Programming,
   level: SkillLevel.five,
+  category: SkillCategory.programmingLanguages,
 };
 
 const reverseEngineering: Skill = {
   icon: 'assets/img/skills/reverse-engineering.png',
   name: SkillName.ReverseEngineering,
   level: SkillLevel.one,
+  category: SkillCategory.foundational,
 };
 
 const softwareExploitation: Skill = {
   icon: 'assets/img/skills/software-exploitation.png',
   name: SkillName.SoftwareExploitation,
   level: SkillLevel.one,
+  category: SkillCategory.foundational,
 };
 
 const compilers: Skill = {
   icon: 'assets/img/skills/compiler.png',
   name: SkillName.Compilers,
   level: SkillLevel.two,
+  category: SkillCategory.foundational,
 };
 
 const agile: Skill = {
   icon: 'assets/img/skills/agile.png',
   name: SkillName.Agile,
   level: SkillLevel.three,
+  category: SkillCategory.softSkills,
 };
 
 const pickupBasketball: Skill = {
   icon: 'assets/img/skills/pickup-basketball.webp',
   name: SkillName.PickupBasketball,
   level: SkillLevel.two,
+  category: SkillCategory.hobbiesAndInterests,
 };
 
 const spreadsheetScripting: Skill = {
   icon: 'assets/img/skills/spreadsheet-scripting.png',
   name: SkillName.SpreadsheetScripting,
   level: SkillLevel.two,
+  category: SkillCategory.hobbiesAndInterests,
 };
 
 const leadership: Skill = {
   icon: 'assets/img/skills/leadership.png',
   name: SkillName.Leadership,
   level: SkillLevel.three,
+  category: SkillCategory.softSkills,
 };
 
 const hardwork: Skill = {
   icon: 'assets/img/skills/hardwork.png',
   name: SkillName.Hardwork,
   level: SkillLevel.three,
+  category: SkillCategory.softSkills,
 };
 
 export const SkillsMap: Record<SkillName, Skill> = {
@@ -306,7 +337,6 @@ export const SkillsMap: Record<SkillName, Skill> = {
   [SkillName.Flutter]: flutter,
   [SkillName.Firebase]: firebase,
   [SkillName.VSCode]: vscode,
-  [SkillName.Unknown]: unknown,
   [SkillName.UX]: ux,
   [SkillName.FullStack]: fullstack,
   [SkillName.Writing]: writing,
@@ -321,3 +351,31 @@ export const SkillsMap: Record<SkillName, Skill> = {
   [SkillName.Hardwork]: hardwork,
   [SkillName.Programming]: programming,
 };
+
+const getSkillsByCategory = (
+  skillsMap: Record<SkillName, Skill>,
+): Record<SkillCategory, Skill[]> => {
+  const skillsByCategory: Record<SkillCategory, Skill[]> = {
+    [SkillCategory.programmingLanguages]: [],
+    [SkillCategory.frameworksAndLibraries]: [],
+    [SkillCategory.foundational]: [],
+    [SkillCategory.toolsAndTechnologies]: [],
+    [SkillCategory.softSkills]: [],
+    [SkillCategory.hobbiesAndInterests]: [],
+  };
+
+  Object.values(skillsMap).forEach((skill) => {
+    const category = skill.category;
+    skillsByCategory[category].push(skill);
+  });
+
+  for (const category in skillsByCategory) {
+    skillsByCategory[category as SkillCategory].sort(
+      (a, b) => b.level - a.level,
+    );
+  }
+
+  return skillsByCategory;
+};
+
+export const SkillsByCategory = getSkillsByCategory(SkillsMap);

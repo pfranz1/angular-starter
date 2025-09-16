@@ -4,15 +4,14 @@ import {
   AchievementName,
   TravelAchivementState,
 } from '../../achievements/achievement';
-import { SkillsMap } from './skills.interface';
-import { KeyValuePipe } from '@angular/common';
-import { SkillsCardComponent } from './skill-card.component';
+import { SkillCategory, SkillsByCategory } from './skills.interface';
+import { SubSectionHeaderComponent } from './sub-section-header.component';
 
 @Component({
   selector: 'app-skills',
-  imports: [KeyValuePipe, SkillsCardComponent],
+  imports: [SubSectionHeaderComponent],
   template: `
-    <!--    <div>-->
+    <!--    <div class="mt-3 mb-3">-->
     <!--      <h2>Here is my toolbox - the skill levels are as follows:</h2>-->
     <!--      <h3>1 - {{ 1 | skillLevelName }}</h3>-->
     <!--      <h3>2 - {{ 2 | skillLevelName }}</h3>-->
@@ -21,11 +20,21 @@ import { SkillsCardComponent } from './skill-card.component';
     <!--      <h3>5 - {{ 5 | skillLevelName }}</h3>-->
     <!--    </div>-->
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-center align-middle gap-x-4 mt-5"
-    >
-      @for (skillEntry of SkillsMap | keyvalue; track skillEntry.key) {
-        <app-skill-card [skill]="skillEntry.value"></app-skill-card>
+    <div>
+      @for (
+        skillCategory of [
+          SkillCategory.frameworksAndLibraries,
+          SkillCategory.programmingLanguages,
+          SkillCategory.foundational,
+          SkillCategory.softSkills,
+          SkillCategory.hobbiesAndInterests,
+        ];
+        track $index
+      ) {
+        <app-sub-section-header
+          [title]="skillCategory"
+          [skills]="SkillsByCategory[skillCategory]"
+        ></app-sub-section-header>
       }
     </div>
   `,
@@ -43,5 +52,6 @@ export class SkillsComponent implements OnInit {
     this.achievementService.updateState(stateUpdate, AchievementName.Travel);
   }
 
-  protected readonly SkillsMap = SkillsMap;
+  protected readonly SkillsByCategory = SkillsByCategory;
+  protected readonly SkillCategory = SkillCategory;
 }

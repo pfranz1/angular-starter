@@ -6,6 +6,7 @@ import {
   SkillLevelTransform,
 } from './skills.interface';
 import { NgClass, NgOptimizedImage } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-skill-card',
@@ -19,7 +20,8 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
   ],
   template: `
     <div
-      class="max-w-md gradient w-60 md:w-64 lg:w-72 bg-slate-100  mx-4 px-2 place-self-center"
+      @animate
+      class="skill-card-container max-w-md w-60 md:w-64 lg:w-72 mx-4 px-2 place-self-center"
     >
       <div class="grid grid-rows-[8rem,8rem,2fr] relative">
         <!--        image-->
@@ -84,11 +86,15 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
       </div>
     </div>
   `,
-  styles: `
-    .gradient {
-      background: #38435400;
-    }
-  `,
+  styles: ``,
+  animations: [
+    trigger('animate', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.5)' }),
+        animate('250ms', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
 })
 export class SkillsCardComponent {
   skill = input.required<Skill>();
